@@ -1,0 +1,77 @@
+[
+    {
+        "nummer": "0100",
+        "bezeichnung": "Gebäude",
+        "typ": "AV"
+    },
+    {
+        "nummer": "0205",
+        "bezeichnung": "Maschinen",
+        "typ": "AV"
+    },
+    {
+        "nummer": "0220",
+        "bezeichnung": "Vereinsheimausstattung",
+        "typ": "AV"
+    },
+    {
+        "nummer": "0475",
+        "bezeichnung": "GWG",
+        "typ": "AV"
+    },
+    {
+        "nummer": "0925",
+        "bezeichnung": "Hauptkasse",
+        "typ": "UV"
+    },
+    {
+        "nummer": "0930",
+        "bezeichnung": "Nebenkasse 1",
+        "typ": "UV"
+    },
+    {
+        "nummer": "0935",
+        "bezeichnung": "Nebenkasse 2",
+        "typ": "UV"
+    },
+    {
+        "nummer": "0945",
+        "bezeichnung": "Bank 1",
+        "typ": "UV"
+    },
+    {
+        "nummer": "0950",
+        "bezeichnung": "Bank 2",
+        "typ": "UV"
+    },
+    {
+        "nummer": "0955",
+        "bezeichnung": "Bank 3",
+        "typ": "UV"
+    },
+    {
+        "nummer": "2110",
+        "bezeichnung": "Mitgliedsbeiträge",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "2150",
+        "bezeichnung": "Aufnahmegeb.",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "2661",
+        "bezeichnung": "Miete und Pacht",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "2664",
+        "bezeichnung": "Reparaturen",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "2700",
+        "bezeichnung": "Mitgliederverw.",
+        "typ": "Ausgaben"
+    }
+]
