@@ -9,5 +9,5 @@ Dieses Projekt ist im Rahmen einer Masterarbeit im Studiengang Master of Taxatio
 Das Projekt basiert auf dem QT Framework in der Version 6.5 LTS. Das QT Framework ist ebenfalls unter der GPL v3 lizenziert. Es wird nicht mit dem Quellcode von VeBu mitgeliefert. Die Lizenzbedingungen von QT sind einzuhalten. Desweiteren wird als Datenbanksystem SQLLite verwendet. Dieses wird der Public Domain frei zur Verfügung gesetellt.<br />
 <br />
 <b>Installationshinweise:</b><br />
-Das Programm wird fertig kompiliert im Ordner Binary bereitgestellt. Es kann auf Windows Systemen (Windows 10/11) sowie macOS ausgeführt werden.<br /> 
+Das Programm wird fertig kompiliert im Ordner "dist" bereitgestellt. Es kann auf Windows Systemen (Windows 10/11) sowie macOS ausgeführt werden.<br /> 
 <br />
