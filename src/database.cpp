@@ -53,6 +53,45 @@ void VebuDatabase::addAccount(AccountEntry &entry){
     }
 }
 
+bool VebuDatabase::deleteAccount(AccountEntry &entry){
+    QSqlQuery query;
+
+    query.prepare("SELECT COUNT(*) AS Result FROM Buchungen "
+                  "WHERE Gegenkonto = :id;");
+
+    query.bindValue(":id", entry.number());
+
+    if (!query.exec()) {
+        qDebug() << "Fehler 1: " << query.lastError().text();
+        qDebug() << "Query: " << query.lastQuery();
+    }
+
+    else
+    {
+        if (query.next()) {
+            if (query.value("Result").toInt() == 0)
+            {
+                query.prepare("DELETE FROM Kontenplan "
+                              "WHERE ID = :id;");
+
+                query.bindValue(":id", entry.number());
+
+                if (!query.exec()) {
+                    qDebug() << "Fehler 1: " << query.lastError().text();
+                    qDebug() << "Query: " << query.lastQuery();
+                }
+
+                else
+                {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
 void VebuDatabase::addSet(BookSet &entry){
     QSqlQuery query;
 
@@ -201,7 +240,7 @@ void VebuDatabase::addBooking(BookEntry &entry){
 
 void VebuDatabase::loadAccountData(QList<AccountEntry*> &accountList){
 
-    qDeleteAll(accountList);
+    //qDeleteAll(accountList);
     accountList.clear();
 
     QSqlQuery query;
@@ -225,7 +264,7 @@ void VebuDatabase::loadAccountData(QList<AccountEntry*> &accountList){
 }
 
 void VebuDatabase::loadBookingsForSet(int id, QList<BookEntry*> &bookingslist){
-    qDeleteAll(bookingslist);
+    //qDeleteAll(bookingslist);
     bookingslist.clear();
 
     QSqlQuery query;
@@ -262,8 +301,9 @@ void VebuDatabase::loadBookingsForSet(int id, QList<BookEntry*> &bookingslist){
     }
 }
 
-void VebuDatabase::loadBookingsForYear(int year, QList<BookEntry*> &bookingslist){
-    qDeleteAll(bookingslist);
+void VebuDatabase::loadBookingsForYear(int year, QList<BookEntry*> &bookingslist)
+{
+    //qDeleteAll(bookingslist);
     bookingslist.clear();
 
     QSqlQuery query;
@@ -487,4 +527,22 @@ void VebuDatabase::createTables(void) {
                 )"
         );
 
+    if (!query.exec(
+            R"(
+                CREATE TABLE IF NOT EXISTS Sammelkonten
+                (ID INTEGER PRIMARY KEY,
+                Kto_Ideell INT,
+                Kto_Vermoegen INT,
+                Kto_Zweck INT,
+                Kto_Wirtschaft INT,
+                Ant_Ideell INT,
+                Ant_Vermoegen INT,
+                Ant_Zweck INT,
+                Ant_Wirtschaft INT
+                )
+                )"
+            ))
+    {
+        qDebug() << "Fehler beim Erstellen der Tabelle:" << query.lastError().text();
+    }
 }

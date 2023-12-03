@@ -32,7 +32,6 @@ public:
 
 public slots:
     Q_INVOKABLE void getUserData(void);
-    Q_INVOKABLE void getAccountList(void);
     Q_INVOKABLE void updateAccount(const QString &text1, const int type, const int value);
     Q_INVOKABLE void updateUserData(const QString &text1, const int type);
 };

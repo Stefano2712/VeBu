@@ -28,6 +28,17 @@ Item {
 
     signal bookingSelectionClick(int i)
 
+    signal exitView(int index)
+
+    focus: true
+
+    Keys.onPressed:(event) => {
+       if (event.key === Qt.Key_Escape)
+       {
+           exitView(0)
+       }
+    }
+
     VebuBackground {
         width: col1.width + 50
         height: col1.height + 50

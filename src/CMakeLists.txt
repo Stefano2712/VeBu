@@ -33,12 +33,15 @@ qt_add_qml_module(VeBu
     QML_FILES VebuComboBox.qml
     QML_FILES VebuBackground.qml
     QML_FILES SettingsView.qml
+    QML_FILES AccountList.qml HelpSignal.qml
     SOURCES settings.h settings.cpp
     SOURCES database.cpp
     SOURCES database.h
     SOURCES accountentry.h accountentry.cpp
     SOURCES bookset.h bookset.cpp
-    QML_FILES AccountList.qml HelpSignal.qml
+    QML_FILES AccountPlan.qml
+    QML_FILES ReportView.qml
+    QML_FILES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -29,12 +29,44 @@ Item {
     x: parent.width / 2 - fillrect.width / 2
     y: parent.height / 2 - fillrect.height / 2 - 20
 
-    MessageDialog {
-       id: helpDialog
-       text: "Willkommen bei VeBu, der Buchhaltungssoftware für kleine Vereine.<br />
+    Dialog {
+        anchors.centerIn: parent
+        width: 300
+        modal: true
+        visible: false
+        title: "Willkommen!"
+        id: helpDialog
+
+        ColumnLayout {
+            anchors.fill: parent
+            TextEdit {
+                textFormat: TextEdit.RichText
+                text: "Willkommen bei VeBu, der Buchhaltungssoftware für kleine Vereine.<br />
 <br />
 Prüfe zu Beginn die Stände der Bestandskonten unter Einstellungen->Kontoeröffnung. Danach kannst Du mit dem Buchen beginnen. Viel Spaß!"
-       visible: false
+                readOnly: true
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            VebuButton {
+                text: "OK"
+                Layout.preferredHeight: 30
+                Layout.preferredWidth: 100
+                Layout.alignment: Qt.AlignHCenter
+                onClicked: {
+                    // Aktion bei Klick auf Bestätigen
+                    helpDialog.visible = false
+                }
+            }
+
+            Keys.onPressed: {
+                event => {
+                    helpDialog.visible = false
+                }
+            }
+        }
     }
 
     Component.onCompleted: {
@@ -110,6 +142,7 @@ Prüfe zu Beginn die Stände der Bestandskonten unter Einstellungen->Kontoeröff
                         if (completed)
                         {
                             vebu.currentyear = model[currentIndex];
+                            vebu.updateAccounts();
                         }
                     }
 
@@ -117,6 +150,7 @@ Prüfe zu Beginn die Stände der Bestandskonten unter Einstellungen->Kontoeröff
                             completed = true;
                             setCurrentIndexToCurrentYear();
                             vebu.currentyear = model[currentIndex];
+                            vebu.updateAccounts();
                     }
 
                     function setCurrentIndexToCurrentYear() {

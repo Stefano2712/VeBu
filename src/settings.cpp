@@ -41,20 +41,6 @@ void Settings::updateUserData(const QString &text1, const int type)
 }
 
 /**
- * Lese alle Eröffnungsbuchungen ein und schicke diese an die AccountList View.
- */
-void Settings::getAccountList(void)
-{
-    VebuDatabase* db = VebuDatabase::getInstance();
-    /*db->loadAccountData(newData);
-
-    if (newData.size())
-    {
-        emit userDataChanged(newData);
-    }*/
-}
-
-/**
  * Ändere den Wert von einer Eröffnungsbuchung.
  */
 void Settings::updateAccount(const QString &text1, const int type, const int value)

@@ -23,21 +23,55 @@ import QtQuick.Dialogs
 Item {
     height: parent.height
     width: parent.width
-
     id: mitem
 
-    Keys.onPressed: {
-        event => {
-            exitView(0)
-        }
+    signal exitView(int index)
+
+    focus: true
+
+    Keys.onPressed:(event) => {
+       if (event.key === Qt.Key_Escape)
+       {
+           exitView(0)
+       }
     }
 
-    MessageDialog {
-       id: helpDialog
-       text: "<b>Eröffnungskonten</b><br />
-Setze hier die Anfangsbestände der Eröffnungskonten. Achtung! Wenn die Daten in den Vorjahren gesetzt wurde, sollten die Bestände hier nicht mehr geändert werden, um den Zusammenhang der Vermögensübersicht zu gewährleisten.<br />
-<br />"
-       visible: false
+    Dialog {
+        anchors.centerIn: parent
+        width: 300
+        modal: true
+        visible: false
+        title: "Kontoeröffnung"
+        id: helpDialog
+
+        ColumnLayout {
+            anchors.fill: parent
+            TextEdit {
+                textFormat: TextEdit.RichText
+                text: "Setze hier die Anfangsbestände der Eröffnungskonten.<br /><br />Achtung! Wenn die Daten in den Vorjahren gesetzt wurde, sollten die Bestände hier nicht mehr geändert werden, um den Zusammenhang der Vermögensübersicht zu gewährleisten.<br /><br />"
+                readOnly: true
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            VebuButton {
+                text: "OK"
+                Layout.preferredHeight: 30
+                Layout.preferredWidth: 100
+                Layout.alignment: Qt.AlignHCenter
+                onClicked: {
+                    // Aktion bei Klick auf Bestätigen
+                    helpDialog.visible = false
+                }
+            }
+
+            Keys.onPressed: {
+                event => {
+                    helpDialog.visible = false
+                }
+            }
+        }
     }
 
     Component.onCompleted: {
@@ -52,22 +86,24 @@ Setze hier die Anfangsbestände der Eröffnungskonten. Achtung! Wenn die Daten i
        helpDialog.open()
     }
 
-    // Der StackLayout wird verwendet, um zwischen den Seiten zu wechseln
     StackLayout {
         id: stackLayout
         anchors.top: parent.top
         anchors.centerIn: parent
         width: parent.width / 2
+        height: mitem.height - 100
 
         VebuBackground {
             border.color: "#2196F3"
             radius: 2
             id: bkgrd
-            height: mitem.height - 200
 
             Text {
                 id: saldentext
                 text: "Salden zum 01.01.2022"
+                font.bold: true;
+                leftPadding: 10
+                topPadding: 10
             }
 
             ListView {
@@ -96,9 +132,18 @@ Setze hier die Anfangsbestände der Eröffnungskonten. Achtung! Wenn die Daten i
                         validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+/}
                         text: modelData.wert
 
-                        onAccepted: {
-                            text = formatCurrency(text);
-                            focus = false
+                        Keys.onPressed:(event) => {
+                           if (event.key === Qt.Key_Tab) {
+                               text = formatCurrency(text);
+                               focus = false
+                               vebu.modifyBooking(modelData.id, text)
+                           }
+
+                           if (event.key === Qt.Key_Return) {
+                               text = formatCurrency(text);
+                               focus = false
+                               vebu.modifyBooking(modelData.id, text)
+                           }
                         }
 
                         function formatCurrency(text) {
@@ -114,15 +159,11 @@ Setze hier die Anfangsbestände der Eröffnungskonten. Achtung! Wenn die Daten i
                         }
                     }
                 }
-
-                Component.onCompleted: {
-                    vebu.settings.getAccountList();
-                }
             }
 
             Row {
                 anchors {
-                    topMargin: 20
+                    topMargin: 50
                     top: listing.bottom; horizontalCenter: parent.horizontalCenter;}
 
                 VebuButton {

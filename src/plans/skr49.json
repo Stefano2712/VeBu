@@ -30,23 +30,8 @@
         "typ": "UV"
     },
     {
-        "nummer": "0935",
-        "bezeichnung": "Nebenkasse 2",
-        "typ": "UV"
-    },
-    {
         "nummer": "0945",
         "bezeichnung": "Bank 1",
-        "typ": "UV"
-    },
-    {
-        "nummer": "0950",
-        "bezeichnung": "Bank 2",
-        "typ": "UV"
-    },
-    {
-        "nummer": "0955",
-        "bezeichnung": "Bank 3",
         "typ": "UV"
     },
     {
@@ -72,6 +57,116 @@
     {
         "nummer": "2700",
         "bezeichnung": "Mitgliederverw.",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "4110",
+        "bezeichnung": "Miete/Pacht",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "4150",
+        "bezeichnung": "Zinserträge",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "5000",
+        "bezeichnung": "Eintrittsgelder",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "5050",
+        "bezeichnung": "Sportreisen.",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "5305",
+        "bezeichnung": "Trainer/Übungsl.",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5500",
+        "bezeichnung": "Reisekosten",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5550",
+        "bezeichnung": "Sportanlage",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5555",
+        "bezeichnung": "Miete/Pacht",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5560",
+        "bezeichnung": "Strom",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5561",
+        "bezeichnung": "Wasser",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5562",
+        "bezeichnung": "Heizung",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5565",
+        "bezeichnung": "Reparaturen",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5570",
+        "bezeichnung": "Allg.Kosten",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "5575",
+        "bezeichnung": "Verw.Kosten",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8038",
+        "bezeichnung": "Getränkeumsatz",
+        "typ": "Einnahmen"
+    },
+    {
+        "nummer": "8150",
+        "bezeichnung": "Wareneinkauf",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8300",
+        "bezeichnung": "Raumkosten",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8302",
+        "bezeichnung": "Miete/Pacht",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8303",
+        "bezeichnung": "Strom",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8304",
+        "bezeichnung": "Wasser",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8305",
+        "bezeichnung": "Heizung",
+        "typ": "Ausgaben"
+    },
+    {
+        "nummer": "8310",
+        "bezeichnung": "Büromaterial",
         "typ": "Ausgaben"
     }
 ]

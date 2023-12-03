@@ -55,6 +55,7 @@ public:
     }
 
     void addAccount(AccountEntry &name);
+    bool deleteAccount(AccountEntry &name);
     void addSet(BookSet &name);
     void addBooking(BookEntry &name);
     void addUserData(const QString &name, const int type);

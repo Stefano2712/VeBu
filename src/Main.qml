@@ -75,6 +75,13 @@ ApplicationWindow {
                     handleButtonClicked(4);
                 }
             }
+
+            MenuItem {
+                text: "Kontenplan"
+                onTriggered: {
+                    handleButtonClicked(5);
+                }
+            }
         }
 
         Menu {
@@ -154,11 +161,11 @@ ApplicationWindow {
             break;
 
         case 1:
-            console.log("TODO: Implement kontenansicht screen!");
+            contentLoader.source = "BookList.qml"
             break;
 
         case 2:
-            console.log("TODO: Implement jahresabschluss screen!");
+            contentLoader.source = "ReportView.qml"
             break;
 
         case 3:
@@ -167,6 +174,10 @@ ApplicationWindow {
 
         case 4:
             contentLoader.source = "AccountList.qml"
+            break;
+
+        case 5:
+            contentLoader.source = "AccountPlan.qml"
             break;
 
         case 6:
@@ -195,22 +206,50 @@ ApplicationWindow {
         }
     }
 
-
-    MessageDialog {
+    Dialog {
+        anchors.centerIn: parent
+        width: 500
+        modal: true
+        visible: false
+        title: "VeBu - Die Vereinsbuchhaltung<br />
+                 Copyright (C) 2023  S. Hornstein"
         id: licenseDialog
-        buttons: MessageDialog.Ok
-        informativeText: "This program is free software: you can redistribute it and/or modify \
+
+        ColumnLayout {
+            anchors.fill: parent
+            TextEdit {
+                textFormat: TextEdit.RichText
+                text: "This program is free software: you can redistribute it and/or modify \
 it under the terms of the GNU General Public License as published by the Free \
 Software Foundation, either version 3 of the License, or any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY \
 WARRANTY; See the GNU General Public License for more details. You should have \
 received a copy of the GNU General Public License along with this program. If not, \
-see https://www.gnu.org/licenses/.
-                                                    "
-        text:   "VeBu - Die Vereinsbuchhaltung<br />
-                 Copyright (C) 2023  S. Hornstein"
-        visible: false
+see https://www.gnu.org/licenses/.<br /><br />"
+                readOnly: true
+                wrapMode: Text.Wrap
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            VebuButton {
+                text: "OK"
+                Layout.preferredHeight: 30
+                Layout.preferredWidth: 100
+                Layout.alignment: Qt.AlignHCenter
+                onClicked: {
+                    // Aktion bei Klick auf Bestätigen
+                    licenseDialog.visible = false
+                }
+            }
+
+            Keys.onPressed: {
+                event => {
+                    licenseDialog.visible = false
+                }
+            }
+        }
     }
 }
 

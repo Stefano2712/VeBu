@@ -24,10 +24,15 @@ Item {
     height: parent.height
     width: parent.width
 
-    Keys.onPressed: {
-        event => {
-            exitView(0)
-        }
+    signal exitView(int index)
+
+    focus: true
+
+    Keys.onPressed:(event) => {
+       if (event.key === Qt.Key_Escape)
+       {
+           exitView(0)
+       }
     }
 
     Connections {
@@ -182,9 +187,9 @@ Item {
                     anchors.rightMargin: 10
 
                     spacing: 5
-                    // Definiere eine Eigenschaft namens "selectedIndex"
+
                     property int selectedIndex: 5
-                    currentIndex: selectedIndex // setze den aktuellen Index auf den Wert von selectedIndex
+                    currentIndex: selectedIndex
 
                     model: ListModel {
                         // Beispiel Daten
@@ -201,9 +206,10 @@ Item {
 
                     delegate: Rectangle {
                         width: listView.width
-                        height: 50  // oder eine andere gewünschte Höhe
+                        height: 50
                         radius: 2
-                        // Wenn der Index dem aktuellen Index entspricht, setze die Farbe auf Blau, ansonsten Zebrastreifen-Farbgebung
+
+                        // Wenn der Index dem aktuellen Index entspricht, setze die Farbe auf Blau
                         color: index === listView.selectedIndex ? "#2196F3" : "white"
                         border.color: index === listView.selectedIndex ? "#2196F3" : "black"
 
@@ -213,7 +219,6 @@ Item {
                             text: model.name
                         }
 
-                        // Mausinteraktionsbereich
                         MouseArea {
                             anchors.fill: parent
                             // Wenn auf das Rechteck geklickt wird
